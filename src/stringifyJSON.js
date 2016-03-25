@@ -6,6 +6,7 @@
 var stringifyJSON = function(obj) {//How do I want to recur this. Each value needs to be an individual string. I could check type and then stringify. cycle thorugh every value and return the string version.
   // your code goes here
 	var theString = '';
+	
 	if(Array.isArray(obj)) {
 		obj.forEach(function(item) {
 			theString += stringifyJSON(item) + ",";
@@ -13,10 +14,13 @@ var stringifyJSON = function(obj) {//How do I want to recur this. Each value nee
 		return "["+ theString.slice(0,-1)+"]";
 	} else if (typeof obj === "object" && obj !== null) {
 		for(var key in obj) {
-			theString += baseCase(key) + ":" + stringifyJSON(obj[key])+","; 
+			if(typeof obj[key] === "function" || typeof obj[key] == "undefined" ) {
+				return "{}"; 
+			} else {
+				theString += baseCase(key) + ":" + stringifyJSON(obj[key])+","; 
+			}
 		}
 		return "{"+ theString.slice(0,-1)+"}"; 
-
 	} 
 
 	return baseCase(obj); 
@@ -26,9 +30,8 @@ var stringifyJSON = function(obj) {//How do I want to recur this. Each value nee
 
 
 function baseCase(val) {
-	if (typeof val === "string") {
+ 	if (typeof val === "string") {
 		return '"'+val+'"';
 	} 
 	return String(val); 
 }; 
-
