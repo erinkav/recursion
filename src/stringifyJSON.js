@@ -3,19 +3,16 @@
 
 // but you don't so you're going to write it from scratch:
 
-var stringifyJSON = function(obj) {//How do I want to recur this. Each value needs to be an individual string. I could check type and then stringify. cycle thorugh every value and return the string version. 
+var stringifyJSON = function(obj) {//How do I want to recur this. Each value needs to be an individual string. I could check type and then stringify. cycle thorugh every value and return the string version.
   // your code goes here
 	var theString = '';
 	if(Array.isArray(obj)) {
-		obj.forEach((item) => {
+		obj.forEach(function(item) {
 			theString += stringifyJSON(item) + ",";
-		})
+		}); 
 		return "["+ theString.slice(0,-1)+"]";
-	}  else if (typeof obj === "object" && obj !== null) {
+	} else if (typeof obj === "object" && obj !== null) {
 		for(var key in obj) {
-			if(typeof obj[key] === "function" || obj === undefined) {
-				continue; 
-			}
 			theString += baseCase(key) + ":" + stringifyJSON(obj[key])+","; 
 		}
 		return "{"+ theString.slice(0,-1)+"}"; 
