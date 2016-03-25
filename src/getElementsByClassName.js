@@ -7,29 +7,26 @@
 var getElementsByClassName = function(className){
 	var results = []; 
 	// var allHTML = $("html").html(); 
-	var docs = this.document; 
-	var doc = this.document.childNodes; 
-	if(doc[1].className ==="") {
-		console.log("blank"); 
-	}
-	console.log("full doc", doc[1].className, "doc", doc[1], "methods", doc[0], "this");  
-	// console.log(allHTML); 
-	// var element = $("<div>").get(); 
-	// console.log(element); docs[1].html.className
-
-
-
-
-
-	// var elementList = allHTML.split("<");
- //    for (var i = 0; i<elementList.length; i++) {
- //    	if(elementList[i].indexOf(className) > 1) {
- //    		var element = elementList[i].split(" ")[0];
- //    		results.push(element+"."+className); 
- //    	} 
- //    }
-
-	// console.log(results); 
+	// var doc = this.document; 
+	var object = this.document.childNodes[1];
+	// console.log(object); 
+	// console.log(typeof object);
+	// console.log(Array.isArray(object)); 
+	if(object.className === className) {
+		results.push(object.className); 
+	} 
+	if(object.childElementCount === 0 || object.childElementCount == "") {
+		return results;
+	} else {
+		for(var key in object) {
+			if(object.childNodes) {
+				console.log("before", object); 
+			object = object[key];
+			console.log("after", object); 
+			return getElementsByClassName.apply(object, className); 
+			}
+		}
+	} 
 }; 
 
 
