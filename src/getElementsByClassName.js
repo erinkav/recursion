@@ -6,5 +6,12 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className
 ){
-  // your code here
+  if(actualClass === className) {
+  	return fullString; 
+  } else {
+  	//break out each div
+  	//run through each
+  	//if class === target stop
+  }
 };
+
