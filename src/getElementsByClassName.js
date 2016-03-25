@@ -4,14 +4,13 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-){
-  if(actualClass === className) {
-  	return fullString; 
-  } else {
-  	//break out each div
-  	//run through each
-  	//if class === target stop
-  }
-};
+var getElementsByClassName = function(className){
+	var results = []; 
+	var allHTML = document.documentElement.innerHTML; 
+	console.log(allHTML, "real way? "); 
+	var rest = $("title").outerHTML; 
+	console.log(rest); 
+}; 
 
+
+// [body.targetClassName, div.targetClassName] "expectedArray"
