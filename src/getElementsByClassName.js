@@ -6,10 +6,17 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className){
 	var results = []; 
-	var allHTML = document.documentElement.innerHTML; 
-	console.log(allHTML, "real way? "); 
-	var rest = $("title").outerHTML; 
-	console.log(rest); 
+	var allHTML = $("html").html(); 
+	var elementList = allHTML.split("<");
+    for (var i = 0; i<elementList.length; i++) {
+    	if(elementList[i].indexOf(className) > 1) {
+    		console.log(elementList[i]); 
+    		var element = elementList[i].split(" ")[0];
+    		results.push(element+"."+className); 
+    	} 
+    }
+
+	console.log(results); 
 }; 
 
 
