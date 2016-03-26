@@ -5,29 +5,50 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className){
-	var results = []; 
 	// var allHTML = $("html").html(); 
 	// var doc = this.document; 
-	var object = this.document.childNodes[1];
+	var results = [];  
+	var object = this.document.children[0].children; 
+
+	// } else if (object.className === className) {
+	// 	results.push(object.className); 
+	// } 
 	// console.log(object); 
-	// console.log(typeof object);
-	// console.log(Array.isArray(object)); 
-	if(object.className === className) {
-		results.push(object.className); 
-	} 
-	if(object.childElementCount === 0 || object.childElementCount == "") {
-		return results;
-	} else {
-		for(var key in object) {
-			if(object.childNodes) {
-				console.log("before", object); 
-			object = object[key];
-			console.log("after", object); 
-			return getElementsByClassName.apply(object, className); 
-			}
+	// for(var i = 0; i < object.length; i++) { 
+	// 	if(object[i].length < 1 || undefined) {
+	// 		return; 
+	// 	} else {
+	// 		console.log("no children",object[i]);
+	// 		return getElementsByClassName.call(object[i], className); 
+	// 	}
+	// }
+	for(var i = 0; i <object.length; i++) {
+		console.log("object[i]", object[i]);
+		console.log("children", object[i].children); 
+		if(object[i] !== undefined || object[i].children !== undefined) {
+			results.push(lookIntoColl(object[i], className));; 
 		}
-	} 
+	}
+	console.log("results", results); 
+	return results; 
+	// return getChildNodes(object);  
 }; 
+
+function lookIntoColl (item, className) {
+	
+			if (item.className === className) {
+				return item; 
+			} else {
+				if(item.children) {
+					return lookIntoColl(item.children, className); 
+				}
+			} 
+		}
+	
+	
+
+
+
 
 
 // [body.targetClassName, div.targetClassName] "expectedArray"
